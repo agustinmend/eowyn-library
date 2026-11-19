@@ -1,0 +1,3 @@
+"timestamp","api_process","api_cpu_percent","api_memory_mib","postgres_cpu_percent","postgres_memory_mib","postgres_memory_percent"
+"2026-11-17T21:00:57.4088049-04:00","node","0","98,07","0","30,41","0,39"
+"2026-11-17T21:01:00.2906533-04:00","node","0","98,07","0","30,41","0,39"

@@ -1,0 +1,10 @@
+{
+  "simulation": "performance.EowynFullApiSimulation",
+  "simulationId": "eowynfullapisimulation-20261119002900068",
+  "start": 1795048140634,
+  "description": "",
+  "scenarios": ["Cobertura API completa con fixtures aislados"],
+  "assertions": [
+
+  ]
+}

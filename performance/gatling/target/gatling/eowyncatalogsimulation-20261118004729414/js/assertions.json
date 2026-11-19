@@ -1,0 +1,36 @@
+{
+  "simulation": "performance.EowynCatalogSimulation",
+  "simulationId": "eowyncatalogsimulation-20261118004729414",
+  "start": 1794962850002,
+  "description": "",
+  "scenarios": ["Login y consulta de catálogo"],
+  "assertions": [
+{
+  "path": "Global",
+  "target": "mean of response time",
+  "condition": "is less than",
+  "expectedValues": [1500.0],
+  "result": true,
+  "message": "Global: mean of response time is less than 1500.0",
+  "actualValue": [24.0]
+},
+{
+  "path": "Global",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [2000.0],
+  "result": true,
+  "message": "Global: 95th percentile of response time is less than 2000.0",
+  "actualValue": [65.0]
+},
+{
+  "path": "Global",
+  "target": "percentage of failed events",
+  "condition": "is less than",
+  "expectedValues": [1.0],
+  "result": true,
+  "message": "Global: percentage of failed events is less than 1.0",
+  "actualValue": [0.0]
+}
+  ]
+}

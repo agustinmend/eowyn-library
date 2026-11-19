@@ -1,0 +1,36 @@
+{
+  "simulation": "performance.EowynStressSimulation",
+  "simulationId": "eowynstresssimulation-20261118010128462",
+  "start": 1794963689124,
+  "description": "",
+  "scenarios": ["Estrés: login y consultas de catálogo"],
+  "assertions": [
+{
+  "path": "Global",
+  "target": "mean of response time",
+  "condition": "is less than",
+  "expectedValues": [1500.0],
+  "result": true,
+  "message": "Global: mean of response time is less than 1500.0",
+  "actualValue": [218.0]
+},
+{
+  "path": "Global",
+  "target": "95th percentile of response time",
+  "condition": "is less than",
+  "expectedValues": [2000.0],
+  "result": true,
+  "message": "Global: 95th percentile of response time is less than 2000.0",
+  "actualValue": [771.0]
+},
+{
+  "path": "Global",
+  "target": "percentage of failed events",
+  "condition": "is less than",
+  "expectedValues": [1.0],
+  "result": true,
+  "message": "Global: percentage of failed events is less than 1.0",
+  "actualValue": [0.0]
+}
+  ]
+}
