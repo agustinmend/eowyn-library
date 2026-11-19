@@ -6331,3 +6331,13 @@ KnexTimeoutError: Knex: Timeout acquiring a connection. The pool is probably ful
 KnexTimeoutError: Knex: Timeout acquiring a connection. The pool is probably full. Are you missing a .transacting(trx) call?
 KnexTimeoutError: Knex: Timeout acquiring a connection. The pool is probably full. Are you missing a .transacting(trx) call?
 KnexTimeoutError: Knex: Timeout acquiring a connection. The pool is probably full. Are you missing a .transacting(trx) call?
+error: terminating connection due to administrator command
+    at Parser.parseErrorMessage (D:\Agustin\Universidad\6to semestre\QA II\ProyectoOficialBloque2\eowyn-library\node_modules\pg-protocol\src\parser.ts:369:69)
+    at Parser.handlePacket (D:\Agustin\Universidad\6to semestre\QA II\ProyectoOficialBloque2\eowyn-library\node_modules\pg-protocol\src\parser.ts:187:21)
+    at Parser.parse (D:\Agustin\Universidad\6to semestre\QA II\ProyectoOficialBloque2\eowyn-library\node_modules\pg-protocol\src\parser.ts:102:30)
+    at Socket.<anonymous> (D:\Agustin\Universidad\6to semestre\QA II\ProyectoOficialBloque2\eowyn-library\node_modules\pg-protocol\src\index.ts:7:48)
+    at Socket.emit (node:events:518:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Socket.Readable.push (node:internal/streams/readable:392:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)

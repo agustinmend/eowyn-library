@@ -5,3 +5,4 @@
 [INFO] 20:28:37 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.3)
 cpg connected
 Server running on port 3000
+[ERROR] 02:31:41 error: terminating connection due to administrator command
