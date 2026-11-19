@@ -1,0 +1,10 @@
+{
+  "simulation": "performance.EowynStressSimulation",
+  "simulationId": "eowynstresssimulation-20261119022016644",
+  "start": 1795054817168,
+  "description": "",
+  "scenarios": ["Estrés: login y consultas de catálogo"],
+  "assertions": [
+
+  ]
+}

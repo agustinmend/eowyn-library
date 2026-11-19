@@ -1,0 +1,10 @@
+{
+  "simulation": "performance.EowynCatalogSimulation",
+  "simulationId": "eowyncatalogsimulation-20261119021701014",
+  "start": 1795054621566,
+  "description": "",
+  "scenarios": ["Login y consulta de catálogo"],
+  "assertions": [
+
+  ]
+}

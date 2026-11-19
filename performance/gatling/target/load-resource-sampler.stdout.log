@@ -1,0 +1,12 @@
+
+Property                Count           Average Maximum
+--------                -----           ------- -------
+api_cpu_percent            46  1.42858695652174   2.172
+api_memory_mib             46  69.9428260869565   90.91
+api_memory_percent_host    46 0.437086956521739   0.568
+postgres_cpu_percent       46  1.98608695652174   18.09
+postgres_memory_mib        46  49.0771739130435   53.27
+postgres_memory_percent    46 0.633695652173914    0.69
+
+
+CSV: D:\Agustin\Universidad\6to semestre\QA II\ProyectoOficialBloque2\eowyn-library\performance\gatling\target\load-resources-final.csv
