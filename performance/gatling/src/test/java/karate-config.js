@@ -11,8 +11,6 @@ function fn() {
   return {
     baseUrl: baseUrl.replace(/\/$/, ''),
     userEmail: email,
-    userPassword: password,
-    booksLimit: Number(karate.properties['booksLimit'] || 30),
-    categoriesLimit: Number(karate.properties['categoriesLimit'] || 50)
+    userPassword: password
   };
 }

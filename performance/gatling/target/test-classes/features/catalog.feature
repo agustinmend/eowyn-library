@@ -15,7 +15,25 @@ Feature: Consultas autenticadas del catálogo Eowyn Library
 
     Given path 'api', 'categories'
     And param page = 1
-    And param limit = categoriesLimit
+    And param limit = 10
+    And header Authorization = 'Bearer ' + accessToken
+    And header karate-name = 'GET /api/categories'
+    When method get
+    Then status 200
+    And match response.categories == '#[]'
+
+    Given path 'api', 'categories'
+    And param page = 2
+    And param limit = 10
+    And header Authorization = 'Bearer ' + accessToken
+    And header karate-name = 'GET /api/categories'
+    When method get
+    Then status 200
+    And match response.categories == '#[]'
+
+    Given path 'api', 'categories'
+    And param page = 3
+    And param limit = 10
     And header Authorization = 'Bearer ' + accessToken
     And header karate-name = 'GET /api/categories'
     When method get
@@ -24,7 +42,25 @@ Feature: Consultas autenticadas del catálogo Eowyn Library
 
     Given path 'api', 'books'
     And param page = 1
-    And param limit = booksLimit
+    And param limit = 10
+    And header Authorization = 'Bearer ' + accessToken
+    And header karate-name = 'GET /api/books'
+    When method get
+    Then status 200
+    And match response.books == '#[]'
+
+    Given path 'api', 'books'
+    And param page = 2
+    And param limit = 10
+    And header Authorization = 'Bearer ' + accessToken
+    And header karate-name = 'GET /api/books'
+    When method get
+    Then status 200
+    And match response.books == '#[]'
+
+    Given path 'api', 'books'
+    And param page = 3
+    And param limit = 10
     And header Authorization = 'Bearer ' + accessToken
     And header karate-name = 'GET /api/books'
     When method get
