@@ -20,6 +20,7 @@ class EowynLoadSimulation extends Simulation {
         .formParam("password", password)
         .check(status.is(200), jsonPath("$.token").saveAs("jwt"))
     )
+    .exitHereIfFailed
     .exec(
       http("GET /api/categories")
         .get("/api/categories?page=1&limit=50")

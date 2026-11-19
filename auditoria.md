@@ -43,7 +43,7 @@ Las consultas de libros y categorías aceptan `page` y `limit`. La colección us
 
 En los ejercicios de clase se usó Karate para describir requests y validar status/respuestas, y Scala/Gatling para seleccionar un feature con `karateFeature`, declarar perfiles de inyección y aserciones. Los ejercicios k6 practicaron VUs o stages, `check`, pausas, `BASE_URL` configurable y thresholds. Para este proyecto se mantendrá esa separación: Karate expresa el flujo HTTP y Gatling controla la carga/reportes.
 
-Se creó `performance/gatling` como módulo aislado para la automatización, sin alterar la lógica de la aplicación Express. Los perfiles de smoke, carga y estrés leen el catálogo mediante login dinámico. También se añadió `EowynFullApiSimulation` y `full-api-lifecycle.feature` para cubrir las 13 rutas del API, incluida escritura: registro/login, validación de email, CRUD de categorías y libros, crear y devolver préstamos. Esta cobertura genera datos únicos y protege el entorno con un opt-in obligatorio y un máximo de 20 usuarios. Se incluye SQL de limpieza para sus fixtures.
+Se mantiene `performance/gatling` como módulo aislado para las tres pruebas del template: smoke, carga y estrés. Los perfiles usan el flujo autenticado de login y consulta de categorías/libros, sin alterar la lógica de la aplicación Express ni escribir datos.
 
 ## Progreso y resultados locales
 
@@ -56,15 +56,15 @@ Se creó `performance/gatling` como módulo aislado para la automatización, sin
 - Los números `<1500 ms` promedio, `<2000 ms` p95, `<1%` errores y `>40 req/s` se tratan como referencias del template, no como requisitos de aprobación. La medición de carga observó más de 40 req/s y latencia elevada; el perfil de estrés observó baja tasa por sus 12 s de think time. El informe describe el estado medido sin convertir estas referencias en gates.
 - En las corridas guardadas, las referencias todavía eran aserciones globales, así que Gatling acabó con BUILD FAILURE por latencia aunque se registraron 0 errores HTTP. Ya se quitaron esos gates de los tres scripts; los siguientes reportes muestran el estado sin bloquear por cifras ilustrativas.
 - El informe inicial está en `informe-performance.md`; los reportes HTML y CSV se generan bajo `performance/gatling/target/` (ignorado por Git).
-- La cobertura full API se ejecutó el 18/11/2026: 13 requests, 0 fallos, media 42 ms y p95 176 ms, con 1 VU. Es una comprobación de ciclo de vida y no una prueba de carga sostenida; no debe compararse con las otras simulaciones.
-- El lanzador de una línea levanta PostgreSQL, aplica migraciones, inicia la API si hace falta, ejecuta la cobertura full API y limpia automáticamente sus fixtures mediante el SQL de limpieza.
+- El alcance vigente conserva solo smoke, carga y estrés sobre el flujo de lectura requerido por el template.
+- `performance/gatling/scripts/run-performance.ps1` prepara PostgreSQL y la API local y ejecuta los tres perfiles en orden.
 
 ## Siguiente trabajo
 
 1. Confirmar con el equipo/docente si el throughput `>40 req/s` del ejemplo aplica como aceptación obligatoria; ajustar y volver a medir si así lo indican.
 2. Ejecutar en QA si el equipo obtiene ese ambiente y comparar contra la línea base local.
-3. Si se requiere performance sostenida de endpoints de escritura, diseñar un perfil aparte sobre base aislada, con carga controlada, muestreo de recursos y limpieza.
-4. Adjuntar todos los reportes HTML/CSV y actualizar el informe final con las mediciones de cada perfil.
+3. Repetir los perfiles seleccionados con datos y ambiente constantes si se solicita comparar tendencias.
+4. Adjuntar reportes HTML/CSV y el informe final conforme al template docente.
 
 ## Estado de cambios
 

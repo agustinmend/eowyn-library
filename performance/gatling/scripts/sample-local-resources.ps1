@@ -14,6 +14,8 @@ New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null
 $listener = Get-NetTCPConnection -LocalPort $ApiPort -State Listen | Select-Object -First 1
 if (-not $listener) { throw "No se encontró proceso escuchando en el puerto $ApiPort." }
 $apiProcess = Get-Process -Id $listener.OwningProcess
+$totalPhysicalMemoryBytes = (Get-CimInstance -ClassName Win32_ComputerSystem).TotalPhysicalMemory
+if (-not $totalPhysicalMemoryBytes) { throw 'No se pudo obtener la memoria física total del equipo.' }
 $processorCount = [Environment]::ProcessorCount
 $invariant = [Globalization.CultureInfo]::InvariantCulture
 $samples = [Collections.Generic.List[object]]::new()
@@ -51,6 +53,7 @@ while ((Get-Date) -lt $stopAt -and (-not $StopFile -or -not (Test-Path -LiteralP
     api_process = $apiProcess.ProcessName
     api_cpu_percent = [math]::Round($apiCpu, 3)
     api_memory_mib = [math]::Round($apiProcess.WorkingSet64 / 1MB, 2)
+    api_memory_percent_host = [math]::Round(($apiProcess.WorkingSet64 / $totalPhysicalMemoryBytes) * 100, 3)
     postgres_cpu_percent = $dbCpu
     postgres_memory_mib = [math]::Round($dbMemoryMiB, 2)
     postgres_memory_percent = [double]::Parse(($parts[2] -replace '%',''), $invariant)
@@ -61,6 +64,6 @@ while ((Get-Date) -lt $stopAt -and (-not $StopFile -or -not (Test-Path -LiteralP
 }
 
 $samples | Export-Csv -LiteralPath $OutputFile -NoTypeInformation -Encoding utf8
-$samples | Measure-Object -Property api_cpu_percent,api_memory_mib,postgres_cpu_percent,postgres_memory_mib -Average -Maximum |
+$samples | Measure-Object -Property api_cpu_percent,api_memory_mib,api_memory_percent_host,postgres_cpu_percent,postgres_memory_mib,postgres_memory_percent -Average -Maximum |
   Select-Object Property,Count,Average,Maximum | Format-Table -AutoSize
 Write-Output "CSV: $((Resolve-Path $OutputFile).Path)"
